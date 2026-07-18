@@ -364,6 +364,22 @@ function createOrderCard(order, { showDept, list, onChange }) {
   date.className = 'order-date';
   date.textContent = fmtDate(order.createdAt);
 
+  const orderId = document.createElement('button');
+  orderId.type = 'button';
+  orderId.className = 'order-id';
+  orderId.title = 'Bấm để sao chép mã đơn đầy đủ';
+  orderId.textContent = `Mã đơn: #${order.id.slice(-6).toUpperCase()}`;
+  orderId.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(order.id);
+      const original = orderId.textContent;
+      orderId.textContent = 'Đã sao chép mã đơn!';
+      setTimeout(() => { orderId.textContent = original; }, 1500);
+    } catch {
+      prompt('Mã đơn đầy đủ (sao chép thủ công):', order.id);
+    }
+  });
+
   const reasonLabel = document.createElement('label');
   reasonLabel.className = 'reason-label';
   reasonLabel.textContent = 'Lý do chưa hoàn thành';
@@ -402,7 +418,7 @@ function createOrderCard(order, { showDept, list, onChange }) {
   }
 
   actions.append(toggleBtn, shareBtn, deleteBtn);
-  body.append(badge, note, date, reasonLabel, reasonInput, actions);
+  body.append(badge, note, date, orderId, reasonLabel, reasonInput, actions);
   card.append(thumb, body);
   return card;
 }

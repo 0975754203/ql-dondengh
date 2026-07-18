@@ -465,6 +465,22 @@ textarea#note-input {
   color: var(--muted);
 }
 
+.order-id {
+  align-self: flex-start;
+  font-family: "Courier New", monospace;
+  font-size: .72rem;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.order-id:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .card-actions {
   display: flex;
   gap: 8px;
