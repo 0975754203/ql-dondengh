@@ -210,6 +210,56 @@ async function saveReason(order, value) {
   }
 }
 
+function buildShareText(order) {
+  const lines = [
+    `Khoa/Phòng: ${order.departmentName || ''}`,
+    `Trạng thái: ${STATUS_LABEL[order.status]}`,
+    `Ghi chú: ${order.note || '(không có)'}`,
+  ];
+  if (order.reason) lines.push(`Lý do chưa hoàn thành: ${order.reason}`);
+  lines.push(`Ngày tạo: ${fmtDate(order.createdAt)}`);
+  return lines.join('\n');
+}
+
+async function shareOrder(order, btn) {
+  const text = buildShareText(order);
+  const originalLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Đang chuẩn bị...';
+
+  try {
+    const imgRes = await fetch(order.imagePath);
+    const blob = await imgRes.blob();
+    const ext = (blob.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
+    const file = new File([blob], `don-de-nghi.${ext}`, { type: blob.type });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], text });
+    } else if (navigator.share) {
+      await navigator.share({ text, url: order.imagePath });
+    } else {
+      let copied = false;
+      try {
+        await navigator.clipboard.writeText(`${text}\nẢnh: ${order.imagePath}`);
+        copied = true;
+      } catch {
+        // Sao chép thất bại (trình duyệt chặn) - vẫn mở ảnh để người dùng tự lưu/chia sẻ.
+      }
+      alert(copied
+        ? 'Trình duyệt này không hỗ trợ chia sẻ trực tiếp. Đã sao chép thông tin đơn, bạn dán vào Zalo và tự đính kèm ảnh nhé.'
+        : 'Trình duyệt này không hỗ trợ chia sẻ trực tiếp. Ảnh đơn sẽ mở ở tab mới, bạn tự lưu và gửi qua Zalo nhé.');
+      window.open(order.imagePath, '_blank');
+    }
+  } catch (err) {
+    if (err.name !== 'AbortError') {
+      alert('Không chia sẻ được: ' + err.message);
+    }
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+  }
+}
+
 async function toggleStatus(order, list, onChange) {
   const nextStatus = order.status === 'hoan_thanh' ? 'chua_hoan_thanh' : 'hoan_thanh';
   const res = await fetch(`/api/orders/${order.id}`, {
@@ -302,13 +352,18 @@ function createOrderCard(order, { showDept, list, onChange }) {
     : 'Đánh dấu hoàn thành';
   toggleBtn.addEventListener('click', () => toggleStatus(order, list, onChange));
 
+  const shareBtn = document.createElement('button');
+  shareBtn.className = 'share-btn';
+  shareBtn.textContent = '📤 Chia sẻ';
+  shareBtn.addEventListener('click', () => shareOrder(order, shareBtn));
+
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'delete-btn';
   deleteBtn.textContent = '✕';
   deleteBtn.title = 'Xóa đơn';
   deleteBtn.addEventListener('click', () => deleteOrder(order, list, onChange));
 
-  actions.append(toggleBtn, deleteBtn);
+  actions.append(toggleBtn, shareBtn, deleteBtn);
   body.append(badge, note, date, reasonLabel, reasonInput, actions);
   card.append(thumb, body);
   return card;

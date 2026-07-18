@@ -486,6 +486,11 @@ textarea#note-input {
   color: var(--accent);
 }
 
+.card-actions button.share-btn {
+  border-color: var(--green);
+  color: var(--green);
+}
+
 .card-actions button.delete-btn {
   border-color: var(--danger);
   color: var(--danger);
