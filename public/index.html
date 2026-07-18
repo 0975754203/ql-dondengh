@@ -90,19 +90,6 @@
     <section id="screen-orders" class="screen" hidden>
       <h2 id="dept-name" class="dept-name"></h2>
 
-      <div class="upload-card">
-        <h3>Thêm đơn mới</h3>
-        <form id="upload-form">
-          <label class="file-drop" id="file-drop">
-            <input type="file" id="image-input" accept="image/*" required>
-            <span id="file-label">Chọn hoặc kéo thả ảnh đơn vào đây</span>
-            <img id="preview" alt="" hidden>
-          </label>
-          <textarea id="note-input" placeholder="Ghi chú (không bắt buộc)" maxlength="500"></textarea>
-          <button type="submit" id="submit-btn">Tải lên</button>
-        </form>
-      </div>
-
       <div class="list-section">
         <div class="toolbar">
           <div class="filters" id="filters">
@@ -119,6 +106,19 @@
           <span id="page-info"></span>
           <button id="page-next" type="button">Sau →</button>
         </div>
+      </div>
+
+      <div class="upload-card">
+        <h3>Thêm đơn mới</h3>
+        <form id="upload-form">
+          <label class="file-drop" id="file-drop">
+            <input type="file" id="image-input" accept="image/*" required>
+            <span id="file-label">Chọn hoặc kéo thả ảnh đơn vào đây</span>
+            <img id="preview" alt="" hidden>
+          </label>
+          <textarea id="note-input" placeholder="Ghi chú (không bắt buộc)" maxlength="500"></textarea>
+          <button type="submit" id="submit-btn">Tải lên</button>
+        </form>
       </div>
     </section>
 
