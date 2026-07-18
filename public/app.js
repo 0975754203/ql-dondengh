@@ -213,7 +213,6 @@ async function saveReason(order, value) {
 function buildShareText(order) {
   const lines = [
     `Khoa/Phòng: ${order.departmentName || ''}`,
-    `Trạng thái: ${STATUS_LABEL[order.status]}`,
     `Ghi chú: ${order.note || '(không có)'}`,
   ];
   if (order.reason) lines.push(`Lý do chưa hoàn thành: ${order.reason}`);
