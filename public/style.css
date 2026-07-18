@@ -217,22 +217,6 @@ button {
   max-width: 1000px;
 }
 
-.welcome-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 32px;
-}
-
-.welcome-box h2 {
-  margin: 0 0 10px;
-}
-
-.welcome-box p {
-  color: var(--muted);
-  line-height: 1.6;
-}
-
 /* ---------- Danh sách Khoa/Phòng trong sidebar ---------- */
 
 .mini-badge {

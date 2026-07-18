@@ -1,4 +1,3 @@
-const screenWelcome = document.getElementById('screen-welcome');
 const screenOrders = document.getElementById('screen-orders');
 const screenSearch = document.getElementById('screen-search');
 const deptGroupsEl = document.getElementById('dept-groups');
@@ -50,7 +49,7 @@ let orders = [];
 let currentDepartment = null;
 let currentFilter = 'all';
 let currentPage = 1;
-let currentView = 'welcome'; // 'welcome' | 'orders' | 'search'
+let currentView = 'search'; // 'orders' | 'search'
 
 let searchResults = [];
 let searchPage = 1;
@@ -120,7 +119,6 @@ deptSearch.addEventListener('input', renderDepartments);
 
 function showScreen(view) {
   currentView = view;
-  screenWelcome.hidden = view !== 'welcome';
   screenOrders.hidden = view !== 'orders';
   screenSearch.hidden = view !== 'search';
   openSearchBtn.classList.toggle('active', view === 'search');
@@ -140,8 +138,9 @@ function openDepartment(dept) {
 
 homeBtn.addEventListener('click', () => {
   currentDepartment = null;
-  showScreen('welcome');
+  showScreen('search');
   renderDepartments();
+  performSearch();
   closeSidebar();
 });
 
@@ -476,3 +475,4 @@ form.addEventListener('submit', async (e) => {
 });
 
 loadDepartments();
+performSearch();
