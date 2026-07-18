@@ -7,6 +7,9 @@ const deptTotalCount = document.getElementById('dept-total-count');
 const deptNameEl = document.getElementById('dept-name');
 const openSearchBtn = document.getElementById('open-search-btn');
 const homeBtn = document.getElementById('home-btn');
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
+const menuToggleBtn = document.getElementById('menu-toggle-btn');
 
 const form = document.getElementById('upload-form');
 const imageInput = document.getElementById('image-input');
@@ -132,12 +135,14 @@ function openDepartment(dept) {
   [...filtersEl.children].forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
   renderDepartments();
   loadOrders();
+  closeSidebar();
 }
 
 homeBtn.addEventListener('click', () => {
   currentDepartment = null;
   showScreen('welcome');
   renderDepartments();
+  closeSidebar();
 });
 
 openSearchBtn.addEventListener('click', () => {
@@ -145,7 +150,25 @@ openSearchBtn.addEventListener('click', () => {
   showScreen('search');
   renderDepartments();
   performSearch();
+  closeSidebar();
 });
+
+// ---------- Menu trượt (sidebar) trên màn hình nhỏ ----------
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  sidebar.style.transform = 'translateX(0)';
+  sidebarOverlay.hidden = false;
+}
+
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  sidebar.style.transform = '';
+  sidebarOverlay.hidden = true;
+}
+
+menuToggleBtn.addEventListener('click', openSidebar);
+sidebarOverlay.addEventListener('click', closeSidebar);
 
 // ---------- Màn hình quản lý đơn theo Khoa/Phòng ----------
 
