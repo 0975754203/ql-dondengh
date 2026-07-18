@@ -308,12 +308,24 @@ async function deleteOrder(order, list, onChange) {
 
 function openLightbox(src) {
   lightboxImg.src = src;
+  lightboxImg.classList.remove('zoomed');
+  lightbox.classList.remove('zoomed');
   lightbox.hidden = false;
 }
 
-lightbox.addEventListener('click', () => {
+function closeLightbox() {
   lightbox.hidden = true;
+  lightboxImg.classList.remove('zoomed');
+  lightbox.classList.remove('zoomed');
   lightboxImg.src = '';
+}
+
+lightbox.addEventListener('click', closeLightbox);
+
+lightboxImg.addEventListener('click', (e) => {
+  e.stopPropagation();
+  lightboxImg.classList.toggle('zoomed');
+  lightbox.classList.toggle('zoomed');
 });
 
 // ---------- Tạo 1 thẻ đơn (dùng chung cho cả 2 màn hình) ----------
