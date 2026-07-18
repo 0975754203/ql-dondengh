@@ -32,6 +32,7 @@ const pageInfo = document.getElementById('page-info');
 const searchFrom = document.getElementById('search-from');
 const searchTo = document.getElementById('search-to');
 const searchStatus = document.getElementById('search-status');
+const searchDepartment = document.getElementById('search-department');
 const searchBtn = document.getElementById('search-btn');
 const searchResetBtn = document.getElementById('search-reset-btn');
 const searchGrid = document.getElementById('search-grid');
@@ -70,6 +71,27 @@ async function loadDepartments() {
   const res = await fetch('/api/departments');
   departments = await res.json();
   renderDepartments();
+  populateSearchDepartmentSelect();
+}
+
+function populateSearchDepartmentSelect() {
+  const previousValue = searchDepartment.value;
+  searchDepartment.innerHTML = '<option value="">Tất cả Khoa/Phòng</option>';
+
+  const groupOrder = [...new Set(departments.map((d) => d.group))];
+  for (const group of groupOrder) {
+    const optgroup = document.createElement('optgroup');
+    optgroup.label = group;
+    for (const d of departments.filter((dep) => dep.group === group)) {
+      const option = document.createElement('option');
+      option.value = d.id;
+      option.textContent = d.name;
+      optgroup.appendChild(option);
+    }
+    searchDepartment.appendChild(optgroup);
+  }
+
+  searchDepartment.value = previousValue;
 }
 
 function renderDepartments() {
@@ -422,6 +444,7 @@ async function performSearch() {
   if (searchFrom.value) params.set('from', searchFrom.value);
   if (searchTo.value) params.set('to', searchTo.value);
   if (searchStatus.value !== 'all') params.set('status', searchStatus.value);
+  if (searchDepartment.value) params.set('departmentId', searchDepartment.value);
 
   const res = await fetch(`/api/orders?${params.toString()}`);
   searchResults = await res.json();
@@ -450,6 +473,7 @@ searchResetBtn.addEventListener('click', () => {
   searchFrom.value = '';
   searchTo.value = '';
   searchStatus.value = 'all';
+  searchDepartment.value = '';
   performSearch();
 });
 
