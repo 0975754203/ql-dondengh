@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quản lý đơn đề nghị</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- SIDEBAR: DANH SÁCH KHOA/PHÒNG -->
+  <aside class="sidebar">
+    <button id="home-btn" class="sidebar-header" type="button">
+      <h1>Quản lý đơn đề nghị</h1>
+    </button>
+
+    <div class="sidebar-search">
+      <input type="text" id="dept-search" placeholder="Tìm Khoa/Phòng...">
+    </div>
+
+    <button id="open-search-btn" class="sidebar-search-btn" type="button">
+      🔍 Tìm theo ngày / trạng thái
+    </button>
+
+    <div id="dept-total-count" class="sidebar-count"></div>
+
+    <nav id="dept-groups" class="sidebar-nav"></nav>
+  </aside>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main class="main-content">
+
+    <!-- MÀN HÌNH CHÀO MỪNG -->
+    <section id="screen-welcome" class="screen">
+      <div class="welcome-box">
+        <h2>Chào mừng 👋</h2>
+        <p>Chọn một Khoa/Phòng ở thanh bên trái để xem và quản lý đơn của khoa đó.</p>
+        <p>Hoặc bấm <strong>"🔍 Tìm theo ngày / trạng thái"</strong> để xem đơn của tất cả các khoa.</p>
+      </div>
+    </section>
+
+    <!-- MÀN HÌNH TÌM KIẾM TOÀN CỤC -->
+    <section id="screen-search" class="screen" hidden>
+      <h2 class="dept-name">Tìm kiếm đơn (tất cả Khoa/Phòng)</h2>
+
+      <div class="upload-card search-filters">
+        <div class="filter-field">
+          <label for="search-from">Từ ngày</label>
+          <input type="date" id="search-from">
+        </div>
+        <div class="filter-field">
+          <label for="search-to">Đến ngày</label>
+          <input type="date" id="search-to">
+        </div>
+        <div class="filter-field">
+          <label for="search-status">Trạng thái</label>
+          <select id="search-status">
+            <option value="all">Tất cả</option>
+            <option value="chua_hoan_thanh">Chưa hoàn thành</option>
+            <option value="hoan_thanh">Hoàn thành</option>
+          </select>
+        </div>
+        <div class="filter-actions">
+          <button id="search-btn" type="button">Tìm kiếm</button>
+          <button id="search-reset-btn" type="button" class="secondary-btn">Đặt lại</button>
+        </div>
+      </div>
+
+      <div class="list-section">
+        <div class="toolbar">
+          <span id="search-count" class="count"></span>
+        </div>
+        <div id="search-grid" class="grid"></div>
+        <p id="search-empty" class="empty" hidden>Không tìm thấy đơn nào.</p>
+        <div id="search-pagination" class="pagination" hidden>
+          <button id="search-page-prev" type="button">← Trước</button>
+          <span id="search-page-info"></span>
+          <button id="search-page-next" type="button">Sau →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÀN HÌNH QUẢN LÝ ĐƠN CỦA 1 KHOA/PHÒNG -->
+    <section id="screen-orders" class="screen" hidden>
+      <h2 id="dept-name" class="dept-name"></h2>
+
+      <div class="upload-card">
+        <h3>Thêm đơn mới</h3>
+        <form id="upload-form">
+          <label class="file-drop" id="file-drop">
+            <input type="file" id="image-input" accept="image/*" required>
+            <span id="file-label">Chọn hoặc kéo thả ảnh đơn vào đây</span>
+            <img id="preview" alt="" hidden>
+          </label>
+          <textarea id="note-input" placeholder="Ghi chú (không bắt buộc)" maxlength="500"></textarea>
+          <button type="submit" id="submit-btn">Tải lên</button>
+        </form>
+      </div>
+
+      <div class="list-section">
+        <div class="toolbar">
+          <div class="filters" id="filters">
+            <button class="filter-btn active" data-filter="all">Tất cả</button>
+            <button class="filter-btn" data-filter="chua_hoan_thanh">Chưa hoàn thành</button>
+            <button class="filter-btn" data-filter="hoan_thanh">Hoàn thành</button>
+          </div>
+          <span id="count" class="count"></span>
+        </div>
+        <div id="grid" class="grid"></div>
+        <p id="empty" class="empty" hidden>Chưa có đơn nào.</p>
+        <div id="pagination" class="pagination" hidden>
+          <button id="page-prev" type="button">← Trước</button>
+          <span id="page-info"></span>
+          <button id="page-next" type="button">Sau →</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<div id="lightbox" class="lightbox" hidden>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

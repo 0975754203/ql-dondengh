@@ -1,0 +1,357 @@
+[
+  {
+    "id": "d1",
+    "name": "Ban Giám đốc",
+    "group": "Ban Giám đốc"
+  },
+  {
+    "id": "d2",
+    "name": "Khoa Ngoại Đầu - Cổ",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d3",
+    "name": "Khoa Ngoại Vú",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d4",
+    "name": "Khoa Ngoại Lồng ngực",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d5",
+    "name": "Khoa Ngoại Phụ khoa",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d6",
+    "name": "Khoa Ngoại Tiết niệu",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d7",
+    "name": "Khoa Ngoại Tiêu hóa 1",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d8",
+    "name": "Khoa Ngoại Tiêu hóa 2",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d9",
+    "name": "Khoa Ngoại Cơ Xương Khớp",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d10",
+    "name": "Khoa Ngoại Thần kinh",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d11",
+    "name": "Khoa Ngoại Tai - Mũi - Họng",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d12",
+    "name": "Khoa Ngoại Gan - Mật - Tụy",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d13",
+    "name": "Khoa Gây mê hồi sức",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d14",
+    "name": "Khoa Hồi sức cấp cứu",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d15",
+    "name": "Khoa Nội Đầu - Cổ, Lồng ngực (Nội 1)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d16",
+    "name": "Khoa Nội Lồng ngực (Nội 2)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d17",
+    "name": "Khoa Nội Tiêu hóa trên (Nội 3)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d18",
+    "name": "Khoa Nội Tiêu hóa dưới (Nội 4)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d19",
+    "name": "Khoa Nội Vú - Phụ khoa 1 (Nội 5)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d20",
+    "name": "Khoa Nội Vú - Phụ khoa 2 (Nội 6)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d21",
+    "name": "Khoa Nội Hệ tạo huyết (Nội 7)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d22",
+    "name": "Khoa Nội Nhi",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d23",
+    "name": "Khoa Điều trị theo yêu cầu",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d24",
+    "name": "Khoa Y học cổ truyền - Phục hồi chức năng",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d25",
+    "name": "Khoa Xạ Đầu - Cổ (Xạ 1)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d26",
+    "name": "Khoa Xạ Vú - Phụ khoa (Xạ 2)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d27",
+    "name": "Khoa Xạ Lồng ngực (Xạ 3)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d28",
+    "name": "Khoa Xạ Tiêu hóa - Tiết niệu (Xạ 5)",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d29",
+    "name": "Khoa Vật lý xạ trị",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d30",
+    "name": "Khoa Y học hạt nhân",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d31",
+    "name": "Khoa Khám bệnh",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d32",
+    "name": "Trung tâm Giải phẫu bệnh và Sinh học phân tử",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d33",
+    "name": "Khoa Nội soi -Thăm dò chức năng",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d34",
+    "name": "Khoa Xét nghiệm",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d35",
+    "name": "Trung tâm Chẩn đoán hình ảnh",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d36",
+    "name": "Khoa Dược",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d37",
+    "name": "Khoa Kiểm soát nhiễm khuẩn",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d38",
+    "name": "Khoa Dinh dưỡng lâm sàng",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d39",
+    "name": "Phòng Kế hoạch tổng hợp",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d40",
+    "name": "Phòng Công nghệ thông tin",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d41",
+    "name": "Trung tâm Đào tạo và Chuyển giao kỹ thuật",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d42",
+    "name": "Phòng Tổ chức cán bộ",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d43",
+    "name": "Phòng Điều dưỡng",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d44",
+    "name": "Phòng Công tác xã hội",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d45",
+    "name": "Phòng Quản lý chất lượng",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d46",
+    "name": "Phòng Hợp tác quốc tế và Nghiên cứu khoa học",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d47",
+    "name": "Phòng Tài chính Kế toán",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d48",
+    "name": "Phòng Vật tư - Thiết bị y tế",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d49",
+    "name": "Phòng Hành chính",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d50",
+    "name": "Phòng Quản trị",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d51",
+    "name": "Phòng Pháp chế và Kiểm soát nội bộ",
+    "group": "Cơ sở chính"
+  },
+  {
+    "id": "d52",
+    "name": "Khoa Ngoại Quán Sứ 1",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d53",
+    "name": "Khoa Ngoại Quán Sứ 2",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d54",
+    "name": "Khoa Gây mê hồi sức Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d55",
+    "name": "Khoa Nội Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d56",
+    "name": "Khoa Điều trị theo yêu cầu cơ sở Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d57",
+    "name": "Khoa Xạ Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d58",
+    "name": "Khoa Khám bệnh Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d59",
+    "name": "Khoa Giải phẫu bệnh và Sinh học phân tử Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d60",
+    "name": "Khoa Chẩn đoán hình ảnh cơ sở Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d61",
+    "name": "Khoa Nội soi -Thăm dò chức năng Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d62",
+    "name": "Khoa Xét nghiệm Quán Sứ",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d63",
+    "name": "Văn phòng - Viện Ung thư Quốc gia",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d64",
+    "name": "Trung tâm Nghiên cứu và thử nghiệm lâm sàng",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d65",
+    "name": "Phòng Dịch tễ học",
+    "group": "Cơ sở 1 - Viện Ung thư Quốc gia"
+  },
+  {
+    "id": "d66",
+    "name": "Khoa Ngoại cơ sở 2",
+    "group": "Cơ sở 2 - Viện Chăm sóc giảm nhẹ"
+  },
+  {
+    "id": "d67",
+    "name": "Khoa Gây mê hồi sức cơ sở 2",
+    "group": "Cơ sở 2 - Viện Chăm sóc giảm nhẹ"
+  },
+  {
+    "id": "d68",
+    "name": "Khoa Nội cơ sở 2",
+    "group": "Cơ sở 2 - Viện Chăm sóc giảm nhẹ"
+  },
+  {
+    "id": "d69",
+    "name": "Trung tâm Chăm sóc giảm nhẹ",
+    "group": "Cơ sở 2 - Viện Chăm sóc giảm nhẹ"
+  },
+  {
+    "id": "d70",
+    "name": "Khoa Xạ cơ sở 2",
+    "group": "Cơ sở 2 - Viện Chăm sóc giảm nhẹ"
+  },
+  {
+    "id": "d71",
+    "name": "Khoa Xét nghiệm cơ sở 2",
+    "group": "Cơ sở 2 - Viện Chăm sóc giảm nhẹ"
+  }
+]
