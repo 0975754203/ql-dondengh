@@ -381,8 +381,13 @@ function createOrderCard(order, { showDept, list, onChange }) {
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'delete-btn';
   deleteBtn.textContent = '✕';
-  deleteBtn.title = 'Xóa đơn';
-  deleteBtn.addEventListener('click', () => deleteOrder(order, list, onChange));
+  if (order.status === 'hoan_thanh') {
+    deleteBtn.disabled = true;
+    deleteBtn.title = 'Không thể xóa đơn đã hoàn thành';
+  } else {
+    deleteBtn.title = 'Xóa đơn';
+    deleteBtn.addEventListener('click', () => deleteOrder(order, list, onChange));
+  }
 
   actions.append(toggleBtn, shareBtn, deleteBtn);
   body.append(badge, note, date, reasonLabel, reasonInput, actions);

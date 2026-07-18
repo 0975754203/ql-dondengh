@@ -498,6 +498,12 @@ textarea#note-input {
   width: 36px;
 }
 
+.card-actions button.delete-btn:disabled {
+  border-color: var(--border);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
 .reason-label {
   font-size: .72rem;
   font-weight: 600;

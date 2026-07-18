@@ -183,6 +183,9 @@ async function main() {
 
     const doc = await ordersCollection.findOne({ _id: objectId });
     if (!doc) return res.status(404).json({ error: 'Không tìm thấy đơn' });
+    if (doc.status === 'hoan_thanh') {
+      return res.status(400).json({ error: 'Không thể xóa đơn đã hoàn thành' });
+    }
 
     await ordersCollection.deleteOne({ _id: objectId });
     if (doc.imagePublicId) {
