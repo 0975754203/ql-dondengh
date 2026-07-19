@@ -47,7 +47,7 @@ const searchPagePrev = document.getElementById('search-page-prev');
 const searchPageNext = document.getElementById('search-page-next');
 const searchPageInfo = document.getElementById('search-page-info');
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 8;
 
 let departments = [];
 let orders = [];
