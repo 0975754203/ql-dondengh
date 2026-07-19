@@ -58,8 +58,32 @@
       </form>
     </div>
 
-    <!-- MÀN HÌNH TÌM KIẾM TOÀN CỤC -->
-    <section id="screen-search" class="screen">
+    <!-- KHỐI 2: DANH SÁCH ĐƠN CỦA KHOA/PHÒNG ĐANG XEM -->
+    <section id="dept-section" class="screen">
+      <h2 id="dept-name" class="dept-name"></h2>
+      <p id="dept-placeholder" class="empty">Chọn một Khoa/Phòng ở thanh bên trái để xem danh sách đơn của khoa đó.</p>
+
+      <div class="list-section" id="dept-list-section" hidden>
+        <div class="toolbar">
+          <div class="filters" id="filters">
+            <button class="filter-btn active" data-filter="all">Tất cả</button>
+            <button class="filter-btn" data-filter="chua_hoan_thanh">Chưa hoàn thành</button>
+            <button class="filter-btn" data-filter="hoan_thanh">Hoàn thành</button>
+          </div>
+          <span id="count" class="count"></span>
+        </div>
+        <div id="grid" class="grid"></div>
+        <p id="empty" class="empty" hidden>Chưa có đơn nào.</p>
+        <div id="pagination" class="pagination" hidden>
+          <button id="page-prev" type="button">← Trước</button>
+          <span id="page-info"></span>
+          <button id="page-next" type="button">Sau →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 3 + 4: TIÊU ĐỀ TÌM KIẾM VÀ KẾT QUẢ TÌM KIẾM TOÀN CỤC -->
+    <section id="search-section" class="screen">
       <h2 class="dept-name">Tìm kiếm đơn (tất cả Khoa/Phòng)</h2>
 
       <div class="upload-card search-filters">
@@ -101,29 +125,6 @@
           <button id="search-page-prev" type="button">← Trước</button>
           <span id="search-page-info"></span>
           <button id="search-page-next" type="button">Sau →</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- MÀN HÌNH QUẢN LÝ ĐƠN CỦA 1 KHOA/PHÒNG -->
-    <section id="screen-orders" class="screen" hidden>
-      <h2 id="dept-name" class="dept-name"></h2>
-
-      <div class="list-section">
-        <div class="toolbar">
-          <div class="filters" id="filters">
-            <button class="filter-btn active" data-filter="all">Tất cả</button>
-            <button class="filter-btn" data-filter="chua_hoan_thanh">Chưa hoàn thành</button>
-            <button class="filter-btn" data-filter="hoan_thanh">Hoàn thành</button>
-          </div>
-          <span id="count" class="count"></span>
-        </div>
-        <div id="grid" class="grid"></div>
-        <p id="empty" class="empty" hidden>Chưa có đơn nào.</p>
-        <div id="pagination" class="pagination" hidden>
-          <button id="page-prev" type="button">← Trước</button>
-          <span id="page-info"></span>
-          <button id="page-next" type="button">Sau →</button>
         </div>
       </div>
     </section>

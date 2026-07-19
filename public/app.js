@@ -1,5 +1,7 @@
-const screenOrders = document.getElementById('screen-orders');
-const screenSearch = document.getElementById('screen-search');
+const deptSection = document.getElementById('dept-section');
+const deptPlaceholder = document.getElementById('dept-placeholder');
+const deptListSection = document.getElementById('dept-list-section');
+const searchSection = document.getElementById('search-section');
 const deptGroupsEl = document.getElementById('dept-groups');
 const deptSearch = document.getElementById('dept-search');
 const deptTotalCount = document.getElementById('dept-total-count');
@@ -52,7 +54,6 @@ let orders = [];
 let currentDepartment = null;
 let currentFilter = 'all';
 let currentPage = 1;
-let currentView = 'search'; // 'orders' | 'search'
 
 let searchResults = [];
 let searchPage = 1;
@@ -183,7 +184,7 @@ function renderDepartments() {
       const item = document.createElement('button');
       item.type = 'button';
       item.className = 'sidebar-dept-item';
-      if (currentView === 'orders' && currentDepartment && currentDepartment.id === d.id) {
+      if (currentDepartment && currentDepartment.id === d.id) {
         item.classList.add('active');
       }
 
@@ -207,39 +208,28 @@ function renderDepartments() {
 
 deptSearch.addEventListener('input', renderDepartments);
 
-function showScreen(view) {
-  currentView = view;
-  screenOrders.hidden = view !== 'orders';
-  screenSearch.hidden = view !== 'search';
-  openSearchBtn.classList.toggle('active', view === 'search');
-}
-
 function openDepartment(dept) {
   currentDepartment = dept;
   currentFilter = 'all';
   currentPage = 1;
   deptNameEl.textContent = dept.name;
+  deptPlaceholder.hidden = true;
+  deptListSection.hidden = false;
   selectUploadDepartment(dept);
-  showScreen('orders');
   [...filtersEl.children].forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
   renderDepartments();
   loadOrders();
   closeSidebar();
+  deptSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 homeBtn.addEventListener('click', () => {
-  currentDepartment = null;
-  showScreen('search');
-  renderDepartments();
-  performSearch();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   closeSidebar();
 });
 
 openSearchBtn.addEventListener('click', () => {
-  currentDepartment = null;
-  showScreen('search');
-  renderDepartments();
-  performSearch();
+  searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   closeSidebar();
 });
 
@@ -642,14 +632,12 @@ form.addEventListener('submit', async (e) => {
       alert(err.error || 'Có lỗi khi tải lên');
       return;
     }
-    const newOrder = await res.json();
-    if (currentView === 'orders' && currentDepartment && newOrder.departmentId === currentDepartment.id) {
-      orders.unshift(newOrder);
+    await res.json();
+    if (currentDepartment) {
       currentPage = 1;
-      render();
-    } else if (currentView === 'search') {
-      performSearch();
+      loadOrders();
     }
+    performSearch();
     loadDepartments();
     noteInput.value = '';
     imageInput.value = '';
