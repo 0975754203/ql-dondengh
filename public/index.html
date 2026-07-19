@@ -60,6 +60,19 @@
 
     <!-- MÀN HÌNH TÌM KIẾM TOÀN CỤC -->
     <section id="screen-search" class="screen">
+      <div class="list-section">
+        <div class="toolbar">
+          <span id="search-count" class="count"></span>
+        </div>
+        <div id="search-grid" class="grid"></div>
+        <p id="search-empty" class="empty" hidden>Không tìm thấy đơn nào.</p>
+        <div id="search-pagination" class="pagination" hidden>
+          <button id="search-page-prev" type="button">← Trước</button>
+          <span id="search-page-info"></span>
+          <button id="search-page-next" type="button">Sau →</button>
+        </div>
+      </div>
+
       <h2 class="dept-name">Tìm kiếm đơn (tất cả Khoa/Phòng)</h2>
 
       <div class="upload-card search-filters">
@@ -90,25 +103,10 @@
           <button id="search-reset-btn" type="button" class="secondary-btn">Đặt lại</button>
         </div>
       </div>
-
-      <div class="list-section">
-        <div class="toolbar">
-          <span id="search-count" class="count"></span>
-        </div>
-        <div id="search-grid" class="grid"></div>
-        <p id="search-empty" class="empty" hidden>Không tìm thấy đơn nào.</p>
-        <div id="search-pagination" class="pagination" hidden>
-          <button id="search-page-prev" type="button">← Trước</button>
-          <span id="search-page-info"></span>
-          <button id="search-page-next" type="button">Sau →</button>
-        </div>
-      </div>
     </section>
 
     <!-- MÀN HÌNH QUẢN LÝ ĐƠN CỦA 1 KHOA/PHÒNG -->
     <section id="screen-orders" class="screen" hidden>
-      <h2 id="dept-name" class="dept-name"></h2>
-
       <div class="list-section">
         <div class="toolbar">
           <div class="filters" id="filters">
@@ -126,6 +124,8 @@
           <button id="page-next" type="button">Sau →</button>
         </div>
       </div>
+
+      <h2 id="dept-name" class="dept-name"></h2>
     </section>
 
   </main>
