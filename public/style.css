@@ -510,6 +510,34 @@ textarea#note-input {
 .badge.hoan_thanh { color: var(--green); background: var(--green-bg); }
 .badge.chua_hoan_thanh { color: var(--orange); background: var(--orange-bg); }
 
+.pending-badge {
+  align-self: flex-start;
+  font-size: .74rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  cursor: help;
+  border: 1px solid transparent;
+}
+
+.pending-badge.pending-low {
+  color: #a16207;
+  background: #fef9c3;
+  border-color: #fde68a;
+}
+
+.pending-badge.pending-medium {
+  color: #c2410c;
+  background: #ffedd5;
+  border-color: #fdba74;
+}
+
+.pending-badge.pending-high {
+  color: #fff;
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
 .order-note {
   font-size: .85rem;
   color: var(--text);

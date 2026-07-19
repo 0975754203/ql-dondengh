@@ -70,6 +70,17 @@ function fmtDate(iso) {
   return d.toLocaleString('vi-VN');
 }
 
+function daysSince(iso) {
+  const diffMs = Date.now() - new Date(iso).getTime();
+  return Math.max(0, Math.floor(diffMs / 86400000));
+}
+
+function pendingLevel(days) {
+  if (days >= 7) return 'pending-high';
+  if (days >= 3) return 'pending-medium';
+  return 'pending-low';
+}
+
 // ---------- Sidebar: danh sách Khoa/Phòng ----------
 
 async function loadDepartments() {
@@ -416,6 +427,17 @@ function createOrderCard(order, { showDept, list, onChange }) {
   badge.className = `badge ${order.status}`;
   badge.textContent = STATUS_LABEL[order.status];
 
+  let pendingBadge = null;
+  if (order.status === 'chua_hoan_thanh') {
+    const days = daysSince(order.createdAt);
+    pendingBadge = document.createElement('span');
+    pendingBadge.className = `pending-badge ${pendingLevel(days)}`;
+    pendingBadge.textContent = `⏳ ${days} ngày chưa hoàn thành`;
+    pendingBadge.title = order.reason
+      ? `Lý do chưa hoàn thành: ${order.reason}`
+      : 'Chưa ghi lý do chưa hoàn thành';
+  }
+
   const note = document.createElement('div');
   note.className = 'order-note';
   note.textContent = order.note || '(không có ghi chú)';
@@ -478,7 +500,9 @@ function createOrderCard(order, { showDept, list, onChange }) {
   }
 
   actions.append(toggleBtn, shareBtn, deleteBtn);
-  body.append(badge, note, date, orderId, reasonLabel, reasonInput, actions);
+  body.append(badge);
+  if (pendingBadge) body.append(pendingBadge);
+  body.append(note, date, orderId, reasonLabel, reasonInput, actions);
   card.append(thumb, body);
   return card;
 }
