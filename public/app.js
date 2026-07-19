@@ -11,7 +11,8 @@ const sidebarOverlay = document.getElementById('sidebar-overlay');
 const menuToggleBtn = document.getElementById('menu-toggle-btn');
 
 const form = document.getElementById('upload-form');
-const uploadDepartment = document.getElementById('upload-department');
+const uploadDeptSearch = document.getElementById('upload-department-search');
+const uploadDeptDropdown = document.getElementById('upload-department-dropdown');
 const imageInput = document.getElementById('image-input');
 const fileDrop = document.getElementById('file-drop');
 const fileLabel = document.getElementById('file-label');
@@ -56,6 +57,8 @@ let currentView = 'search'; // 'orders' | 'search'
 let searchResults = [];
 let searchPage = 1;
 
+let uploadDepartmentId = null;
+
 const STATUS_LABEL = {
   hoan_thanh: 'Hoàn thành',
   chua_hoan_thanh: 'Chưa hoàn thành',
@@ -73,8 +76,6 @@ async function loadDepartments() {
   departments = await res.json();
   renderDepartments();
   populateDepartmentSelect(searchDepartment, 'Tất cả Khoa/Phòng');
-  populateDepartmentSelect(uploadDepartment, null);
-  if (currentDepartment) uploadDepartment.value = currentDepartment.id;
 }
 
 function populateDepartmentSelect(selectEl, placeholderLabel) {
@@ -96,6 +97,70 @@ function populateDepartmentSelect(selectEl, placeholderLabel) {
 
   selectEl.value = previousValue;
 }
+
+// ---------- Ô chọn Khoa/Phòng có gõ tìm kiếm (khung Thêm đơn mới) ----------
+
+function selectUploadDepartment(dept) {
+  uploadDepartmentId = dept.id;
+  uploadDeptSearch.value = dept.name;
+  hideUploadDeptDropdown();
+}
+
+function renderUploadDeptDropdown(keywordOverride) {
+  const keyword = (keywordOverride ?? uploadDeptSearch.value).trim().toLowerCase();
+  const filtered = departments.filter((d) => d.name.toLowerCase().includes(keyword));
+
+  uploadDeptDropdown.innerHTML = '';
+
+  if (filtered.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'dept-picker-empty';
+    empty.textContent = 'Không tìm thấy Khoa/Phòng';
+    uploadDeptDropdown.appendChild(empty);
+  } else {
+    const groupOrder = [...new Set(filtered.map((d) => d.group))];
+    for (const group of groupOrder) {
+      const heading = document.createElement('div');
+      heading.className = 'dept-picker-group';
+      heading.textContent = group;
+      uploadDeptDropdown.appendChild(heading);
+
+      for (const d of filtered.filter((dep) => dep.group === group)) {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'dept-picker-item';
+        item.textContent = d.name;
+        // mousedown (không phải click) để chạy trước sự kiện blur của ô input
+        item.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+          selectUploadDepartment(d);
+        });
+        uploadDeptDropdown.appendChild(item);
+      }
+    }
+  }
+
+  uploadDeptDropdown.hidden = false;
+}
+
+function hideUploadDeptDropdown() {
+  uploadDeptDropdown.hidden = true;
+}
+
+uploadDeptSearch.addEventListener('focus', () => {
+  uploadDeptSearch.select();
+  renderUploadDeptDropdown('');
+});
+
+uploadDeptSearch.addEventListener('input', () => renderUploadDeptDropdown());
+
+uploadDeptSearch.addEventListener('blur', () => {
+  setTimeout(() => {
+    hideUploadDeptDropdown();
+    const match = departments.find((d) => d.id === uploadDepartmentId);
+    uploadDeptSearch.value = match ? match.name : '';
+  }, 150);
+});
 
 function renderDepartments() {
   const keyword = deptSearch.value.trim().toLowerCase();
@@ -154,7 +219,7 @@ function openDepartment(dept) {
   currentFilter = 'all';
   currentPage = 1;
   deptNameEl.textContent = dept.name;
-  uploadDepartment.value = dept.id;
+  selectUploadDepartment(dept);
   showScreen('orders');
   [...filtersEl.children].forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
   renderDepartments();
@@ -555,7 +620,7 @@ fileDrop.addEventListener('drop', (e) => {
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  if (!uploadDepartment.value) {
+  if (!uploadDepartmentId) {
     alert('Vui lòng chọn Khoa/Phòng');
     return;
   }
@@ -568,7 +633,7 @@ form.addEventListener('submit', async (e) => {
   const fd = new FormData();
   fd.append('image', file);
   fd.append('note', noteInput.value);
-  fd.append('departmentId', uploadDepartment.value);
+  fd.append('departmentId', uploadDepartmentId);
 
   try {
     const res = await fetch('/api/orders', { method: 'POST', body: fd });

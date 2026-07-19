@@ -93,9 +93,10 @@
       <div class="upload-card">
         <h3>Thêm đơn mới</h3>
         <form id="upload-form">
-          <div class="filter-field">
-            <label for="upload-department">Khoa/Phòng</label>
-            <select id="upload-department"></select>
+          <div class="filter-field dept-picker" id="upload-dept-picker">
+            <label for="upload-department-search">Khoa/Phòng</label>
+            <input type="text" id="upload-department-search" placeholder="Gõ để tìm Khoa/Phòng..." autocomplete="off">
+            <div id="upload-department-dropdown" class="dept-picker-dropdown" hidden></div>
           </div>
           <label class="file-drop" id="file-drop">
             <input type="file" id="image-input" accept="image/*" required>

@@ -277,6 +277,57 @@ button {
   font-size: .9rem;
 }
 
+.dept-picker {
+  position: relative;
+}
+
+.dept-picker-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  z-index: 20;
+  padding: 4px;
+}
+
+.dept-picker-group {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--muted);
+  padding: 6px 8px 2px;
+}
+
+.dept-picker-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 8px;
+  font-size: .85rem;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.dept-picker-item:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dept-picker-empty {
+  padding: 10px 8px;
+  font-size: .82rem;
+  color: var(--muted);
+}
+
 .filter-actions {
   display: flex;
   gap: 10px;
