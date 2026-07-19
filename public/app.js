@@ -11,6 +11,7 @@ const sidebarOverlay = document.getElementById('sidebar-overlay');
 const menuToggleBtn = document.getElementById('menu-toggle-btn');
 
 const form = document.getElementById('upload-form');
+const uploadDepartment = document.getElementById('upload-department');
 const imageInput = document.getElementById('image-input');
 const fileDrop = document.getElementById('file-drop');
 const fileLabel = document.getElementById('file-label');
@@ -71,12 +72,14 @@ async function loadDepartments() {
   const res = await fetch('/api/departments');
   departments = await res.json();
   renderDepartments();
-  populateSearchDepartmentSelect();
+  populateDepartmentSelect(searchDepartment, 'Tất cả Khoa/Phòng');
+  populateDepartmentSelect(uploadDepartment, null);
+  if (currentDepartment) uploadDepartment.value = currentDepartment.id;
 }
 
-function populateSearchDepartmentSelect() {
-  const previousValue = searchDepartment.value;
-  searchDepartment.innerHTML = '<option value="">Tất cả Khoa/Phòng</option>';
+function populateDepartmentSelect(selectEl, placeholderLabel) {
+  const previousValue = selectEl.value;
+  selectEl.innerHTML = placeholderLabel ? `<option value="">${placeholderLabel}</option>` : '';
 
   const groupOrder = [...new Set(departments.map((d) => d.group))];
   for (const group of groupOrder) {
@@ -88,10 +91,10 @@ function populateSearchDepartmentSelect() {
       option.textContent = d.name;
       optgroup.appendChild(option);
     }
-    searchDepartment.appendChild(optgroup);
+    selectEl.appendChild(optgroup);
   }
 
-  searchDepartment.value = previousValue;
+  selectEl.value = previousValue;
 }
 
 function renderDepartments() {
@@ -151,6 +154,7 @@ function openDepartment(dept) {
   currentFilter = 'all';
   currentPage = 1;
   deptNameEl.textContent = dept.name;
+  uploadDepartment.value = dept.id;
   showScreen('orders');
   [...filtersEl.children].forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
   renderDepartments();
@@ -551,7 +555,10 @@ fileDrop.addEventListener('drop', (e) => {
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  if (!currentDepartment) return;
+  if (!uploadDepartment.value) {
+    alert('Vui lòng chọn Khoa/Phòng');
+    return;
+  }
   const file = imageInput.files[0];
   if (!file) return;
 
@@ -561,7 +568,7 @@ form.addEventListener('submit', async (e) => {
   const fd = new FormData();
   fd.append('image', file);
   fd.append('note', noteInput.value);
-  fd.append('departmentId', currentDepartment.id);
+  fd.append('departmentId', uploadDepartment.value);
 
   try {
     const res = await fetch('/api/orders', { method: 'POST', body: fd });
@@ -571,11 +578,14 @@ form.addEventListener('submit', async (e) => {
       return;
     }
     const newOrder = await res.json();
-    orders.unshift(newOrder);
-    currentPage = 1;
-    render();
+    if (currentDepartment && newOrder.departmentId === currentDepartment.id) {
+      orders.unshift(newOrder);
+      currentPage = 1;
+      render();
+    }
     loadDepartments();
-    form.reset();
+    noteInput.value = '';
+    imageInput.value = '';
     fileLabel.textContent = 'Chọn hoặc kéo thả ảnh đơn vào đây';
     preview.hidden = true;
     preview.src = '';
