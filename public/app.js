@@ -105,6 +105,16 @@ function selectUploadDepartment(dept) {
   uploadDepartmentId = dept.id;
   uploadDeptSearch.value = dept.name;
   hideUploadDeptDropdown();
+
+  currentDepartment = dept;
+  currentFilter = 'all';
+  currentPage = 1;
+  deptNameEl.textContent = dept.name;
+  deptPlaceholder.hidden = true;
+  deptListSection.hidden = false;
+  [...filtersEl.children].forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
+  renderDepartments();
+  loadOrders();
 }
 
 function renderUploadDeptDropdown(keywordOverride) {
@@ -209,16 +219,7 @@ function renderDepartments() {
 deptSearch.addEventListener('input', renderDepartments);
 
 function openDepartment(dept) {
-  currentDepartment = dept;
-  currentFilter = 'all';
-  currentPage = 1;
-  deptNameEl.textContent = dept.name;
-  deptPlaceholder.hidden = true;
-  deptListSection.hidden = false;
   selectUploadDepartment(dept);
-  [...filtersEl.children].forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
-  renderDepartments();
-  loadOrders();
   closeSidebar();
   deptSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
