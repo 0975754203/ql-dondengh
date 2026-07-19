@@ -39,6 +39,25 @@
   <!-- NỘI DUNG CHÍNH -->
   <main class="main-content">
 
+    <!-- KHUNG THÊM ĐƠN MỚI: LUÔN HIỆN TRÊN CÙNG Ở MỌI MÀN HÌNH -->
+    <div class="upload-card upload-card-pinned">
+      <h3>Thêm đơn mới</h3>
+      <form id="upload-form">
+        <div class="filter-field dept-picker" id="upload-dept-picker">
+          <label for="upload-department-search">Khoa/Phòng</label>
+          <input type="text" id="upload-department-search" placeholder="Gõ để tìm Khoa/Phòng..." autocomplete="off">
+          <div id="upload-department-dropdown" class="dept-picker-dropdown" hidden></div>
+        </div>
+        <label class="file-drop" id="file-drop">
+          <input type="file" id="image-input" accept="image/*" required>
+          <span id="file-label">Chọn hoặc kéo thả ảnh đơn vào đây</span>
+          <img id="preview" alt="" hidden>
+        </label>
+        <textarea id="note-input" placeholder="Ghi chú (không bắt buộc)" maxlength="500"></textarea>
+        <button type="submit" id="submit-btn">Tải lên</button>
+      </form>
+    </div>
+
     <!-- MÀN HÌNH TÌM KIẾM TOÀN CỤC -->
     <section id="screen-search" class="screen">
       <h2 class="dept-name">Tìm kiếm đơn (tất cả Khoa/Phòng)</h2>
@@ -89,24 +108,6 @@
     <!-- MÀN HÌNH QUẢN LÝ ĐƠN CỦA 1 KHOA/PHÒNG -->
     <section id="screen-orders" class="screen" hidden>
       <h2 id="dept-name" class="dept-name"></h2>
-
-      <div class="upload-card">
-        <h3>Thêm đơn mới</h3>
-        <form id="upload-form">
-          <div class="filter-field dept-picker" id="upload-dept-picker">
-            <label for="upload-department-search">Khoa/Phòng</label>
-            <input type="text" id="upload-department-search" placeholder="Gõ để tìm Khoa/Phòng..." autocomplete="off">
-            <div id="upload-department-dropdown" class="dept-picker-dropdown" hidden></div>
-          </div>
-          <label class="file-drop" id="file-drop">
-            <input type="file" id="image-input" accept="image/*" required>
-            <span id="file-label">Chọn hoặc kéo thả ảnh đơn vào đây</span>
-            <img id="preview" alt="" hidden>
-          </label>
-          <textarea id="note-input" placeholder="Ghi chú (không bắt buộc)" maxlength="500"></textarea>
-          <button type="submit" id="submit-btn">Tải lên</button>
-        </form>
-      </div>
 
       <div class="list-section">
         <div class="toolbar">

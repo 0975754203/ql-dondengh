@@ -217,6 +217,11 @@ button {
   max-width: 1000px;
 }
 
+.upload-card-pinned {
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+
 /* ---------- Danh sách Khoa/Phòng trong sidebar ---------- */
 
 .mini-badge {
@@ -715,6 +720,10 @@ textarea#note-input {
   }
 
   .screen {
+    max-width: 100%;
+  }
+
+  .upload-card-pinned {
     max-width: 100%;
   }
 

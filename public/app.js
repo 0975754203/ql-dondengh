@@ -643,10 +643,12 @@ form.addEventListener('submit', async (e) => {
       return;
     }
     const newOrder = await res.json();
-    if (currentDepartment && newOrder.departmentId === currentDepartment.id) {
+    if (currentView === 'orders' && currentDepartment && newOrder.departmentId === currentDepartment.id) {
       orders.unshift(newOrder);
       currentPage = 1;
       render();
+    } else if (currentView === 'search') {
+      performSearch();
     }
     loadDepartments();
     noteInput.value = '';
