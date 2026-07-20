@@ -589,7 +589,7 @@ searchBtn.addEventListener('click', performSearch);
 searchResetBtn.addEventListener('click', () => {
   searchFrom.value = '';
   searchTo.value = '';
-  searchStatus.value = 'all';
+  searchStatus.value = 'chua_hoan_thanh';
   searchDepartment.value = '';
   performSearch();
 });
