@@ -81,6 +81,21 @@ function pendingLevel(days) {
   return 'pending-low';
 }
 
+function toDateInputValue(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function applyDefaultSearchDateRange() {
+  const today = new Date();
+  const fiveDaysAgo = new Date();
+  fiveDaysAgo.setDate(today.getDate() - 5);
+  searchFrom.value = toDateInputValue(fiveDaysAgo);
+  searchTo.value = toDateInputValue(today);
+}
+
 // ---------- Sidebar: danh sách Khoa/Phòng ----------
 
 async function loadDepartments() {
@@ -587,8 +602,7 @@ function renderSearch() {
 searchBtn.addEventListener('click', performSearch);
 
 searchResetBtn.addEventListener('click', () => {
-  searchFrom.value = '';
-  searchTo.value = '';
+  applyDefaultSearchDateRange();
   searchStatus.value = 'chua_hoan_thanh';
   searchDepartment.value = '';
   performSearch();
@@ -675,5 +689,6 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
+applyDefaultSearchDateRange();
 loadDepartments();
 performSearch();
